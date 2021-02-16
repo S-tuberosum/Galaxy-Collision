@@ -24,9 +24,8 @@ def force():
     f_vec = np.zeros((n, 3))
     for i in range(n_0):
         f_mag += G*sphere[:, 0]*black[i, 0] / (r_sphere-r_black[i])**2
-        f_vec[:, 0] = f_vec[:, 0] + f_mag * (sphere[:, 4] - black[i, 4])/(r_sphere - r_black[i])
-        f_vec[:, 1] = f_vec[:, 1] + f_mag * (sphere[:, 5] - black[i, 4])/(r_sphere - r_black[i])
-        f_vec[:, 2] = f_vec[:, 2] + f_mag * (sphere[:, 6] - black[i, 4])/(r_sphere - r_black[i])
+        for k in range(3):
+            f_vec[:, k] = f_vec[:, k] + f_mag * (sphere[:, k+4] - black[i, k+4])/(r_sphere - r_black[i])
     return -1*f_vec
 
 
